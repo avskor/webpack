@@ -66,7 +66,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : {{/if_or}}config.build.index,
-      template: 'index.html',
+      template: 'src/main/html/index.html',
       inject: true,
       minify: {
         removeComments: true,
@@ -115,7 +115,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: path.resolve(__dirname, '../src/main/html/static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
