@@ -20,7 +20,7 @@
     "test": "{{#unit}}npm run unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run e2e{{/e2e}}",
     {{/if_or}}
     {{#lint}}
-    "lint": "eslint --ext .js,.vue src/main/vue{{#unit}} src/test/vue{{/unit}}{{#e2e}} src/test/e2e/specs{{/e2e}}",
+    "lint": "eslint --ext {{#typescript}}.ts,{{/typescript}}.js,.vue src/main/vue{{#unit}} src/test/vue{{/unit}}{{#e2e}} src/test/e2e/specs{{/e2e}}",
     {{/lint}}
     "build": "node build/build.js"
   },
@@ -105,6 +105,11 @@
     "postcss-url": "^7.2.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    {{#typescript}}
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2",
+    "typescript-eslint-parser": "^12.0.0",
+    {{/typescript}}
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "rimraf": "^2.6.0",

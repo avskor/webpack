@@ -69,6 +69,11 @@ module.exports = {
         },
       ],
     },
+	typescript: {
+	  when: 'isNotTest',
+      type: 'confirm',
+      message: 'Use TypeScript?',
+	},
     router: {
       when: 'isNotTest',
       type: 'confirm',
@@ -160,8 +165,10 @@ module.exports = {
   filters: {
     '.eslintrc.js': 'lint',
     '.eslintignore': 'lint',
+    'tsconfig.json': 'typescript',
     'config/test.env.js': 'unit || e2e',
     'build/webpack.test.conf.js': "unit && runner === 'karma'",
+    'build/vue-shims.d.ts': "typescript",
     'src/test/vue/**/*': 'unit',
     'src/test/vue/index.js': "unit && runner === 'karma'",
     'src/test/vue/jest.conf.js': "unit && runner === 'jest'",
@@ -169,7 +176,10 @@ module.exports = {
     'src/test/vue/specs/index.js': "unit && runner === 'karma'",
     'src/test/vue/setup.js': "unit && runner === 'jest'",
     'src/test/e2e/**/*': 'e2e',
-    'src/main/vue/router/**/*': 'router',
+    'src/main/vue/router/**/*.js': 'router && !typescript',
+    'src/main/vue/router/**/*.ts': 'router && typescript',
+    'src/main/vue/main.ts': 'typescript',
+    'src/main/vue/main.js': '!typescript',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
